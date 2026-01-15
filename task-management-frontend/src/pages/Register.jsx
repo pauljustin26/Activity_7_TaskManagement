@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../api';
@@ -9,7 +8,7 @@ export default function Register() {
     name: '', 
     email: '', 
     password: '', 
-    role: 'developer'
+    role: 'developer' // Default role
   });
   const [error, setError] = useState('');
 
@@ -25,34 +24,33 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center text-indigo-600">Create Account</h1>
+    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-200">
+      <div className="bg-slate-900 p-8 rounded-2xl shadow-2xl border border-slate-800 w-96">
+        <h1 className="text-3xl font-bold mb-6 text-center text-white">Create Account</h1>
         
-        {error && <div className="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm">{error}</div>}
+        {error && <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-3 rounded mb-4 text-sm text-center">{error}</div>}
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <input 
             placeholder="Full Name" required
-            className="w-full border p-2 rounded"
+            className="w-full bg-slate-950 border border-slate-700 p-3 rounded-lg text-white focus:border-indigo-500 outline-none transition"
             onChange={e => setForm({...form, name: e.target.value})}
           />
           <input 
             type="email" placeholder="Email" required
-            className="w-full border p-2 rounded"
+            className="w-full bg-slate-950 border border-slate-700 p-3 rounded-lg text-white focus:border-indigo-500 outline-none transition"
             onChange={e => setForm({...form, email: e.target.value})}
           />
           <input 
             type="password" placeholder="Password" required
-            className="w-full border p-2 rounded"
+            className="w-full bg-slate-950 border border-slate-700 p-3 rounded-lg text-white focus:border-indigo-500 outline-none transition"
             onChange={e => setForm({...form, password: e.target.value})}
           />
           
-          {/* Role Selection for testing purposes */}
-          <div className="text-sm text-gray-600">
-            <label className="block mb-1">Select Role:</label>
+          <div className="text-sm text-slate-400">
+            <label className="block mb-1 font-medium">Select Role:</label>
             <select 
-              className="w-full border p-2 rounded"
+              className="w-full bg-slate-950 border border-slate-700 p-3 rounded-lg text-white focus:border-indigo-500 outline-none transition"
               value={form.role}
               onChange={e => setForm({...form, role: e.target.value})}
             >
@@ -62,13 +60,13 @@ export default function Register() {
             </select>
           </div>
 
-          <button className="w-full bg-indigo-600 text-white py-2 rounded font-bold hover:bg-indigo-700">
+          <button className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-lg font-bold transition-all shadow-lg shadow-indigo-900/20">
             Register
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm text-gray-500">
-          Already have an account? <Link to="/login" className="text-indigo-600">Login</Link>
+        <p className="mt-6 text-center text-sm text-slate-500">
+          Already have an account? <Link to="/login" className="text-indigo-400 hover:underline hover:text-indigo-300 transition">Login</Link>
         </p>
       </div>
     </div>

@@ -21,30 +21,32 @@ export class TasksService {
   }
 
   findAll() {
-    return this.taskModel
-      .find()
-      .populate('project')
-      .populate('assignedTo')
-      .exec();
+    return this.taskModel.find().populate('project').populate('assignedTo').exec();
   }
 
   findByProject(projectId: string) {
-    return this.taskModel
-      .find({ project: projectId } as any)
-      .populate('assignedTo')
-      .exec();
+    return this.taskModel.find({ project: projectId } as any).populate('assignedTo').exec();
   }
 
   findOne(id: string) {
-    return this.taskModel
-      .findById(id)
-      .populate('project')
-      .populate('assignedTo')
-      .exec();
+    return this.taskModel.findById(id).populate('project').populate('assignedTo').exec();
   }
 
-  update(id: string, updateTaskDto: UpdateTaskDto) {
-    return this.taskModel.findByIdAndUpdate(id, updateTaskDto, { new: true }).exec();
+  // --- UPDATED LOGIC TO HANDLE TIMESTAMPS ---
+  async update(id: string, updateTaskDto: UpdateTaskDto) {
+    const updates: any = { ...updateTaskDto };
+    const now = new Date();
+
+    // Automatically set timestamps based on status change
+    if (updateTaskDto.status === 'in-progress') {
+      updates.startedAt = now;
+    } else if (updateTaskDto.status === 'review') {
+      updates.submittedAt = now;
+    } else if (updateTaskDto.status === 'done') {
+      updates.completedAt = now;
+    }
+
+    return this.taskModel.findByIdAndUpdate(id, updates, { new: true }).exec();
   }
 
   remove(id: string) {

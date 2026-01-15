@@ -22,6 +22,15 @@ export class Task {
   @Prop({ default: 'todo' })
   status: string;
 
+  @Prop()
+  startedAt: Date;
+
+  @Prop()
+  submittedAt: Date;
+
+  @Prop()
+  completedAt: Date;
+
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Project', required: true })
   project: Project;
 
