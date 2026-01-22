@@ -1,107 +1,92 @@
-# Activity 7 — Task Management System
+# Activity 7: Task Management System
 
-A full-stack Task Management application designed to help users organize, track, and manage their daily tasks efficiently. This project features a RESTful API backend and a responsive frontend interface, supporting full CRUD (Create, Read, Update, Delete) operations.
+This project is a full-stack task management application designed to organize projects, track tasks, and manage team members efficiently. It consists of a React-based frontend and a NestJS backend API.
 
-## Features
+## 📂 Project Directory Structure
 
-- **Task Management**: Create, read, update, and delete tasks.
-- **Status Tracking**: Mark tasks as pending, in-progress, or completed.
-- **Data Persistence**: Tasks are stored securely in a database.
-- **Responsive Design**: User-friendly interface adaptable to different screen sizes.
-- **REST API**: specific endpoints for managing task resources.
-
-## Project Structure
+The project is organized into two main directories:
 
 ```text
-task-management-app/
-│
-├── task-management-backend/   # Backend Server (API)
+Activity_7_TaskManagement/
+├── task-management-backend/   # Backend API (NestJS)
 │   ├── src/
-│   │   ├── tasks/             # Task resource module
+│   │   ├── projects/          # Project management module
+│   │   ├── tasks/             # Task management module
+│   │   ├── users/             # User management module
 │   │   ├── app.module.ts
 │   │   └── main.ts
-│   ├── .env                   # Environment variables
-│   └── package.json
+│   ├── test/
+│   ├── package.json
+│   └── tsconfig.json
 │
-├── task-management-frontend/  # Frontend Application (UI)
-│   ├── src/
-│   │   ├── components/        # UI Components
-│   │   ├── services/          # API integration services
-│   │   └── App.js
-│   ├── public/
-│   └── package.json
-│
-└── README.md
-Technologies Used
-Frontend
-Framework: React
+└── task-management-frontend/  # Client Application (React + Vite)
+    ├── public/
+    ├── src/
+    │   ├── assets/
+    │   ├── context/           # AuthContext for state management
+    │   ├── pages/             # Dashboard, Login, ProjectDetails, Users
+    │   ├── App.jsx            # Main Router & Layout
+    │   ├── api.js             # Axios setup
+    │   └── main.jsx
+    ├── index.html
+    ├── package.json
+    └── vite.config.js
+🚀 Technologies Used
+Frontend (task-management-frontend)
+Framework: React (v19) with Vite
 
-HTTP Client: Axios (for API requests)
+Routing: React Router DOM (v7)
 
-Styling: CSS / Tailwind CSS
+Styling: Tailwind CSS (v4)
 
-Backend
-Framework: NestJS / Node.js
+HTTP Client: Axios
 
-Database: MongoDB (via Mongoose)
+Utilities: React Datepicker
 
-API Documentation: Swagger (optional)
+Backend (task-management-backend)
+Framework: NestJS (v11)
 
-Setup Instructions
-Backend Setup
-Navigate to the backend directory:
+Database: MongoDB with Mongoose
+
+Validation: Class-validator & Class-transformer
+
+Language: TypeScript
+
+🛠️ Getting Started
+Follow these steps to set up and run the project locally.
+
+Prerequisites
+Node.js installed
+
+MongoDB installed and running locally (Default URI: mongodb://localhost/task-management-db)
+
+1. Backend Setup
+Navigate to the backend directory, install dependencies, and start the server.
 
 Bash
 
 cd task-management-backend
-Install dependencies:
-
-Bash
-
 npm install
-Configure Environment Variables: Create a .env file in the task-management-backend directory and add your database configuration:
-
-Code snippet
-
-MONGO_URI=mongodb://localhost:27017/task-management
-PORT=3000
-Start the server:
-
-Bash
-
 npm run start:dev
-The backend API will run on http://localhost:3000.
+The backend server typically runs on http://localhost:3000.
 
-Frontend Setup
-Navigate to the frontend directory:
+2. Frontend Setup
+Open a new terminal, navigate to the frontend directory, and start the development server.
 
 Bash
 
 cd task-management-frontend
-Install dependencies:
-
-Bash
-
 npm install
-Start the application:
-
-Bash
-
-npm start
-or if using Vite:
-
-Bash
-
 npm run dev
-The application will run on http://localhost:5173 (or http://localhost:3000 depending on configuration).
+✨ Features
+Authentication: Secure Login and Registration for users.
 
-API Endpoints
-GET /tasks - Retrieve all tasks
+Role-Based Access: Protected routes ensuring only authenticated users can access the dashboard.
 
-POST /tasks - Create a new task
+Dashboard: Overview of projects and tasks.
 
-GET /tasks/:id - Retrieve a specific task
+Project Management: Create and view specific project details (Tasks within projects).
 
-PATCH /tasks/:id/status - Update task status
+Team Management: View and manage users/team members.
 
-DELETE /tasks/:id - Delete a task
+Task Tracking: Organize tasks with status updates.
